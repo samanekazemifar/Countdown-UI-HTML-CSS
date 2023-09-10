@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #cb2424, #db6fcd);
+        }
+
+        .countdown-container {
+            text-align: center;
+            background-color: #e4a5bf;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .countdown-item {
+            margin: 0 20px;
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h1>Event Countdown</h1>
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">seconds</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Set the event date and time (replace with your own date)
+        const eventDate = new Date("2023-12-31T18:00:00");
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeRemaining = eventDate - now;
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }
+
+        // Initial call to update countdown
+        updateCountdown();
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
